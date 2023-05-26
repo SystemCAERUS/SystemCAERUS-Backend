@@ -1,11 +1,28 @@
-//database configuration file
+//Singleton desgin pattern
 import mysql from "mysql";
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "janith1999",
-  database: "caerus",
-});
+class Database {
+  constructor() {
+    this.db = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "janith1999",
+      database: "caerus",
+    });
+  }
 
-export default db;
+  static getInstance() {
+    if (!Database.instance) {
+      Database.instance = new Database();
+    }
+    return Database.instance;
+  }
+
+  getConnection() {
+    return this.db;
+  }
+}
+
+const dbInstance = Database.getInstance();
+export default dbInstance.getConnection();
+
