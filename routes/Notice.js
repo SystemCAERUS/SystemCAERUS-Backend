@@ -1,4 +1,3 @@
-// routes/noticeBoardRoutes.js
 import express from "express";
 import {
   getNotifications,
@@ -9,10 +8,10 @@ import {
 
 const router = express.Router();
 
-router.get("/hr", getNotifications);
-router.post("/hr", addNotification);
-router.delete("/hr/:id", deleteNotification);
-router.put("/hr/update/:id", updateNotification);
+router.get("/", getNotifications);
+router.post("/", addNotification);
+router.delete("/:id", deleteNotification);
+router.put("/update/:id", updateNotification);
 
 export default router;
 

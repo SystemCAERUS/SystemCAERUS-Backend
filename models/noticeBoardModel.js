@@ -49,3 +49,4 @@ export const updateNotificationInDb = (values, noticeId, callback) => {
     }
   });
 };
+

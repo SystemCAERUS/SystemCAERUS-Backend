@@ -16,15 +16,12 @@ export const getNotifications = (req, res) => {
 };
 
 export const addNotification = (req, res) => {
-  const values = [
-    req.body.notification,
-    req.body.value,
-    req.body.date,
-    req.body.desc,
-  ];
+  const { notification, value, date, desc } = req.body;
+  const values = [notification, value, date, desc];
 
   addNotificationToDb(values, (error, data) => {
     if (error) {
+      console.log(error)
       return res.json(error);
     }
     return res.json("Data Added");
@@ -44,17 +41,14 @@ export const deleteNotification = (req, res) => {
 
 export const updateNotification = (req, res) => {
   const noticeId = req.params.id;
-  const values = [
-    req.body.notification,
-    req.body.value,
-    req.body.date,
-    req.body.desc,
-  ];
+  const { notification, value, date, desc } = req.body;
+  const values = [notification, value, date, desc];
 
   updateNotificationInDb(values, noticeId, (error, data) => {
     if (error) {
       return res.json(error);
     }
-    return res.json(data);
+    return res.json("Data Updated");
   });
 };
+
