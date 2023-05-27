@@ -1,4 +1,5 @@
-// controllers/noticeBoardController.js
+// Controllers relating to notice board
+
 import {
   getNotificationsFromDb,
   addNotificationToDb,

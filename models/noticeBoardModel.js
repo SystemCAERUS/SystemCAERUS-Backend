@@ -1,4 +1,5 @@
-// models/noticeBoardModel.js
+// Models relating to notice board
+
 import db from "../config/database.js";
 
 export const getNotificationsFromDb = (callback) => {
