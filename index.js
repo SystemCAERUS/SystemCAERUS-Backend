@@ -24,6 +24,6 @@ app.use("/positions",machineRoutes)
 
 // Start the server on Port 8800
 app.listen(8800, () => {
-  console.log("Backend is started on PORT : 8800");
+  console.log("SystemCAERUS Backend is started on PORT : 8800");
 });
 
