@@ -1,10 +1,18 @@
-import { getAllEmployeeFromDb } from "../models/employeeModel.js";
+import { EmployeeModel } from "../models/employeeModel.js";
 
-export const getAllAvailableUsers = (req, res) => {
-  getAllEmployeeFromDb ((error, data) => {
-    if (error) {
-      return res.json(error);
-    }
-    return res.json(data);
-  });
-};
+class EmployeeController {
+  constructor() {
+    this.employeeModel = new EmployeeModel();
+  }
+
+  getAllAvailableUsers(req, res) {
+    this.employeeModel.getAllEmployees((error, data) => {
+      if (error) {
+        return res.json(error);
+      }
+      return res.json(data);
+    });
+  }
+}
+
+export default EmployeeController;

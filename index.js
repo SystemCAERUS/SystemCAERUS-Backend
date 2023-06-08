@@ -20,6 +20,7 @@ app.use("/issues",issuesRoutes)
 app.use("/employees",employeeRoutes)
 app.use("/departments",departmentRoutes)
 app.use("/machines",machineRoutes)
+app.use("/positions",machineRoutes)
 
 // Start the server on Port 8800
 app.listen(8800, () => {

@@ -25,4 +25,3 @@ class Database {
 
 const dbInstance = Database.getInstance();
 export default dbInstance.getConnection();
-

@@ -1,10 +1,11 @@
 import express from "express";
-import {
-    getAllAvailableUsers,
-} from "../controllers/employeeController.js";
+import EmployeeController from "../controllers/employeeController.js";
 
 const router = express.Router();
+const employeeController = new EmployeeController();
 
-router.get("/", getAllAvailableUsers);
+router.get("/", (req, res) => {
+  employeeController.getAllAvailableUsers(req, res);
+});
 
 export default router;
