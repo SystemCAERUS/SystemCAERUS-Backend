@@ -1,10 +1,16 @@
 import express from "express";
-import {
-    getAllAvailableIssues,
-} from "../controllers/issueController.js";
+import IssueController from "../controllers/issueController.js";
 
 const router = express.Router();
+const issueController = new IssueController();
 
-router.get("/", getAllAvailableIssues);
+router.get("/", (req, res) => {
+  issueController.getAllAvailableIssues(req, res);
+});
+
+router.post("/", (req, res) => {
+  issueController.addIssue(req, res);
+});
 
 export default router;
+
