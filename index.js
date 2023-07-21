@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from 'body-parser';
+import multer from 'multer';
+import path from 'path';
 import noticeBoardRoutes from "./routes/noticeRoute.js";
 import repairRoutes from "./routes/repairPartsRoute.js";
 import machineRoutes from "./routes/machineRoute.js";
@@ -14,6 +16,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
+
+//Images folder can access via IP or Localhost
+app.use(express.static('Images'))
 
 // Routes
 app.use("/hr", noticeBoardRoutes);
@@ -29,4 +34,3 @@ app.use("/positions",positionRoutes)
 app.listen(8800, () => {
   console.log("SystemCAERUS Backend is started on PORT : 8800");
 });
-
