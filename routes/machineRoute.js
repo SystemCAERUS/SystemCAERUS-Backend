@@ -34,7 +34,6 @@ router.post("/", upload.single("image"), (req, res) => {
   const departmentDes = req.body.departmentdes;
   const smallDes = req.body.smallDes;
   const URL = req.body.URL;
-  console.log(machineName)
 
   const sql = "INSERT INTO machine (machinename, departmentid,departmentdes, image,uniqueName,smallDes,URL) VALUES (?, ?, ?, ?, ?, ?,?)";
   db.query(sql, [machineName,departmentID ,departmentDes,image,uniqueName,smallDes,URL], (err, result) => {
