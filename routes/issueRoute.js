@@ -12,5 +12,9 @@ router.post("/", (req, res) => {
   issueController.addIssue(req, res);
 });
 
+router.put("/", (req, res) => {
+  issueController.closeIssueController(req, res);
+});
+
 export default router;
 
