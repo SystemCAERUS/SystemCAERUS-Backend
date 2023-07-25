@@ -14,4 +14,9 @@ router.post("/", (req, res) => {
   jobController.addPositionC(req, res);
 });
 
+router.put("/",(req,res)=>{
+  console.log(req.body)
+  jobController.hideJobPosition(req,res);
+})
+
 export default router;

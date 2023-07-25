@@ -13,8 +13,36 @@ class JobModel {
       }
 
     addPosition(values, callback) {
-      const q ="INSERT INTO `position` (`positionName`, `positionDesc`,`positionHide`) VALUES (?, ?, 0)";
+      const q ="INSERT INTO `position` (`positionName`, `positionDesc`,`positionHide`) VALUES (?, ?, 1)";
       db.query(q, values, (error, data) => {
+        if (error) {
+          callback(error, null);
+        } else {
+          callback(null, data);
+        }
+      });
+    }
+
+    hideJobPositionModel(values,callback){
+      console.log(values)
+      const id = values['selectedJobID']
+      const q ="UPDATE position SET positionHide = 0 WHERE positionID = ?";
+
+      db.query(q, id, (error, data) => {
+        if (error) {
+          callback(error, null);
+        } else {
+          callback(null, data);
+        }
+      });
+    }
+
+    UpdateJobPositionModel(values,callback){
+      console.log(values)
+      const id = values['selectedJobID']
+      const q ="UPDATE position SET positionHide = ? WHERE positionID = ?";
+
+      db.query(q, id, (error, data) => {
         if (error) {
           callback(error, null);
         } else {

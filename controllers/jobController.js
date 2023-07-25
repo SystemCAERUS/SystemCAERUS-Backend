@@ -27,6 +27,18 @@ class JobController {
       return res.json("Data Added");
     });
   }
+
+  hideJobPosition(req, res) {
+    const selectedJobID = req.body;
+    console.log(selectedJobID)
+    this.jobModel.hideJobPositionModel(selectedJobID, (error, data) => {
+      if (error) {
+        console.log(error)
+        return res.json(error);
+      }
+      return res.json("Data Updated");
+    });
+  }
 }
 
 export default JobController;
