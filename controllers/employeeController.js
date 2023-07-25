@@ -13,6 +13,20 @@ class EmployeeController {
       return res.json(data);
     });
   }
+
+  removeEmployeeController(req, res) {
+    const values = req.body.id;
+
+    this.employeeModel.removeEmployeeModel(
+      values,
+      (error, data) => {
+        if (error) {
+          return res.json(error);
+        }
+        return res.json("Data Updated");
+      }
+    );
+  }
 }
 
 export default EmployeeController;

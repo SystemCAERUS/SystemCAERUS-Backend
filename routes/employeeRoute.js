@@ -44,4 +44,25 @@ router.post("/", upload.single("image"), (req, res) => {
   });
 });
 
+router.put("/", upload.single("image"), (req, res) => {
+  const image = req.file.filename;
+  const email = req.body.email;
+  const name = req.body.employeeName;
+  const desc = req.body.employeeDes;
+  const id = req.body.jobID;
+  const phone = req.body.phone;
+  const extra = req.body.optional;
+
+  const sql =
+    "INSERT INTO user (`email`, `name`, `desc`, `imageURl`,`positionID`, `phone`, `extra`,`status`, `username`, `password`) VALUES (?, ?, ?, ?,?,?,?,1,?,?)";
+  db.query(sql, [email, name, desc, image, id, phone, extra,"username","password"], (err, result) => {
+    if (err) return res.json(err);
+    return res.json({ status: "OK" });
+  });
+});
+
+router.put("/remove",(req, res) => {
+  employeeController.removeEmployeeController(req, res);
+});
+
 export default router;

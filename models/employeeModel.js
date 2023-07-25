@@ -12,4 +12,16 @@ export class EmployeeModel {
       }
     });
   }
+
+  removeEmployeeModel(values, callback) {
+    const q =
+      "UPDATE user SET `status` = 0 WHERE userid = ?";
+    db.query(q, values, (error, data) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  }
 }
