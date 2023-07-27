@@ -8,3 +8,5 @@ export const getAllAvailableMachine = (req, res) => {
     return res.json(data);
   });
 };
+
+

@@ -28,14 +28,25 @@ class MapController {
     });
   }
 
-  hideDepartment(req, res) {
-    const noticeId = req.params.id;
-    const { notification, value, date, desc } = req.body;
-    const values = [notification, value, date, desc];
+  removeDepartmentController(req, res) {
+    const values = req.body.id;
 
-    this.noticeBoardModel.updateNotification(
+    this.mapModel.removeDepartmentModel(
       values,
-      noticeId,
+      (error, data) => {
+        if (error) {
+          return res.json(error);
+        }
+        return res.json("Data Updated");
+      }
+    );
+  }
+
+  removeMachineController(req, res) {
+    const values = req.body.id;
+
+    this.mapModel.removeMachineModel(
+      values,
       (error, data) => {
         if (error) {
           return res.json(error);

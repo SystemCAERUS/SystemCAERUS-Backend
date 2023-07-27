@@ -24,6 +24,30 @@ class MapModel {
     });
   }
 
+  removeDepartmentModel(values, callback) {
+    const q =
+      "UPDATE department SET `hide` = 1 WHERE id = ?";
+    db.query(q, values, (error, data) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  }
+
+  removeMachineModel(values, callback) {
+    const q =
+      "UPDATE machine SET `hideMachine` = 1 WHERE machineid = ?";
+    db.query(q, values, (error, data) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  }
+
   deleteNotification(noticeId, callback) {
     const q = "DELETE FROM notification WHERE id = ?";
     db.query(q, [noticeId], (error, data) => {

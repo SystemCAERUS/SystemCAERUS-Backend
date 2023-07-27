@@ -35,7 +35,7 @@ router.post("/", upload.single("image"), (req, res) => {
   const smallDes = req.body.smallDes;
   const URL = req.body.URL;
 
-  const sql = "INSERT INTO machine (machinename, departmentid,departmentdes, image,uniqueName,smallDes,URL) VALUES (?, ?, ?, ?, ?, ?,?)";
+  const sql = "INSERT INTO machine (machinename, departmentid,departmentdes, image,uniqueName,smallDes,URL,hide) VALUES (?, ?, ?, ?, ?, ?,?,0)";
   db.query(sql, [machineName,departmentID ,departmentDes,image,uniqueName,smallDes,URL], (err, result) => {
     if (err) return res.json(err);
     return res.json({ status: "OK" });

@@ -25,8 +25,12 @@ router.post("/", (req, res) => {
   mapController.addDepartment(req, res);
 });
 
-router.delete("/:id", (req, res) => {
-  noticeBoardController.deleteNotification(req, res);
+router.put("/", (req, res) => {
+  mapController.removeDepartmentController(req,res);
+});
+
+router.put("/machine", (req, res) => {
+  mapController.removeMachineController(req,res);
 });
 
 router.put("/update/:id", (req, res) => {
