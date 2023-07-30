@@ -19,4 +19,10 @@ router.put("/",(req,res)=>{
   jobController.hideJobPosition(req,res);
 })
 
+router.put("/update",(req,res)=>{
+  console.log(req.body)
+  jobController.updateJobPosition(req,res);
+})
+
+
 export default router;

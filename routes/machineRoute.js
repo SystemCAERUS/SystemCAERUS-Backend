@@ -35,11 +35,56 @@ router.post("/", upload.single("image"), (req, res) => {
   const smallDes = req.body.smallDes;
   const URL = req.body.URL;
 
-  const sql = "INSERT INTO machine (machinename, departmentid,departmentdes, image,uniqueName,smallDes,URL,hide) VALUES (?, ?, ?, ?, ?, ?,?,0)";
-  db.query(sql, [machineName,departmentID ,departmentDes,image,uniqueName,smallDes,URL], (err, result) => {
-    if (err) return res.json(err);
-    return res.json({ status: "OK" });
-  });
+  const sql =
+    "INSERT INTO machine (machinename, departmentid,departmentdes, image,uniqueName,smallDes,URL,hide) VALUES (?, ?, ?, ?, ?, ?,?,0)";
+  db.query(
+    sql,
+    [
+      machineName,
+      departmentID,
+      departmentDes,
+      image,
+      uniqueName,
+      smallDes,
+      URL,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ status: "OK" });
+    }
+  );
+});
+
+//update machine details
+router.put("/", upload.single("image"), (req, res) => {
+  const image = req.file.filename;
+  const machineName = req.body.machinename;
+  const departmentID = req.body.departmentid;
+  const uniqueName = req.body.uniqueName;
+  const departmentDes = req.body.departmentdes;
+  const smallDes = req.body.smallDes;
+  const URL = req.body.URL;
+  const id = req.body.id;
+
+  const sql =
+    "UPDATE machine SET machinename = ?, departmentid = ?, departmentdes = ?, image = ?,uniqueName = ?, smallDes = ?, URL = ?  WHERE machineid = ?";
+  db.query(
+    sql,
+    [
+      machineName,
+      departmentID,
+      departmentDes,
+      image,
+      uniqueName,
+      smallDes,
+      URL,
+      id,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ status: "OK" });
+    }
+  );
 });
 
 export default router;

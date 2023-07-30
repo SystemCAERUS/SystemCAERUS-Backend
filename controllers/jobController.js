@@ -39,6 +39,18 @@ class JobController {
       return res.json("Data Updated");
     });
   }
+
+  updateJobPosition(req, res) {
+    const data = req.body;
+    console.log(data)
+    this.jobModel.UpdateJobPositionModel(data, (error, data) => {
+      if (error) {
+        console.log(error)
+        return res.json(error);
+      }
+      return res.json("Data Updated");
+    });
+  }
 }
 
 export default JobController;

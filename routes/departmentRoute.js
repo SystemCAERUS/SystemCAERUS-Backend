@@ -1,15 +1,3 @@
-/*import express from "express";
-import {
-    getAllAvailableDepartments,
-} from "../controllers/mapController.js";
-
-const router = express.Router();
-
-router.get("/", getAllAvailableDepartments);
-
-export default router;*/
-
-
 import express from "express";
 import MapController from "../controllers/mapController.js";
 
@@ -33,8 +21,8 @@ router.put("/machine", (req, res) => {
   mapController.removeMachineController(req,res);
 });
 
-router.put("/update/:id", (req, res) => {
-  noticeBoardController.updateNotification(req, res);
+router.put("/update", (req, res) => {
+  mapController.updateDepartmentController(req, res);
 });
 
 

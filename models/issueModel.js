@@ -14,17 +14,19 @@ class IssueModel {
   }
 
   addIssueToDb(newIssue, callback) {
-    const { issueTitle, issueDesc, priority, departmentID, machineID } =
+    const { issueTitle, assignee, priority, departmentID, machineID,issueDesc,currentDateTime } =
       newIssue;
 
-    const q = `INSERT INTO issues (des, expEmployee, priority,status,departmentID, machineID) VALUES (?, ?, ?, ?, ?, ?)`;
+    const q = `INSERT INTO issues (des, expEmployee, priority,status,departmentID, machineID,dDes,addTime) VALUES (?, ?, ?, ?, ?, ?,?,?)`;
     const values = [
       issueTitle,
-      issueDesc,
+      assignee,
       priority,
       1,
       departmentID,
       machineID,
+      issueDesc,
+      currentDateTime,
     ];
 
     db.query(q, values, (error, result) => {
@@ -37,7 +39,19 @@ class IssueModel {
   }
 
   closeIssueModel(values, callback) {
-    const q ="UPDATE issues SET finishedWorkers = ?, closingDes = ?, closingRemark = ?, status = 0 WHERE issueID = ?";
+    const q ="UPDATE issues SET finishedWorkers = ?, closingDes = ?, closingRemark = ?, status = 0,closingTime=? WHERE issueID = ?";
+
+    db.query(q, values, (error, data) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  }
+
+  updateIssueModel(values, callback) {
+    const q ="UPDATE issues SET des = ?, priority = ?, departmentID = ?, machineID = ?, status=1 WHERE issueID = ?";
 
     db.query(q, values, (error, data) => {
       if (error) {

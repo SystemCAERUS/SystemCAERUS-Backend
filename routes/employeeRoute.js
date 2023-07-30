@@ -38,10 +38,14 @@ router.post("/", upload.single("image"), (req, res) => {
 
   const sql =
     "INSERT INTO user (`email`, `name`, `desc`, `imageURl`,`positionID`, `phone`, `extra`,`status`, `username`, `password`) VALUES (?, ?, ?, ?,?,?,?,1,?,?)";
-  db.query(sql, [email, name, desc, image, id, phone, extra,"username","password"], (err, result) => {
-    if (err) return res.json(err);
-    return res.json({ status: "OK" });
-  });
+  db.query(
+    sql,
+    [email, name, desc, image, id, phone, extra, "username", "password"],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ status: "OK" });
+    }
+  );
 });
 
 router.put("/", upload.single("image"), (req, res) => {
@@ -52,16 +56,23 @@ router.put("/", upload.single("image"), (req, res) => {
   const id = req.body.jobID;
   const phone = req.body.phone;
   const extra = req.body.optional;
+  const uID = req.body.id;
+
+  console.log(uID)
 
   const sql =
-    "INSERT INTO user (`email`, `name`, `desc`, `imageURl`,`positionID`, `phone`, `extra`,`status`, `username`, `password`) VALUES (?, ?, ?, ?,?,?,?,1,?,?)";
-  db.query(sql, [email, name, desc, image, id, phone, extra,"username","password"], (err, result) => {
-    if (err) return res.json(err);
-    return res.json({ status: "OK" });
-  });
+    "UPDATE `user` SET `email` = ?, `name` = ?, `desc` = ?, `imageURl` = ?,`positionID`=? ,`phone` = ?, `extra` = ? WHERE `userid` = ?";
+  db.query(
+    sql,
+    [email, name, desc, image, id, phone, extra, uID],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ status: "OK" });
+    }
+  );
 });
 
-router.put("/remove",(req, res) => {
+router.put("/remove", (req, res) => {
   employeeController.removeEmployeeController(req, res);
 });
 

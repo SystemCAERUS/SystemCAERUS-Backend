@@ -25,8 +25,7 @@ class MapModel {
   }
 
   removeDepartmentModel(values, callback) {
-    const q =
-      "UPDATE department SET `hide` = 1 WHERE id = ?";
+    const q = "UPDATE department SET `hide` = 1 WHERE id = ?";
     db.query(q, values, (error, data) => {
       if (error) {
         callback(error, null);
@@ -37,8 +36,7 @@ class MapModel {
   }
 
   removeMachineModel(values, callback) {
-    const q =
-      "UPDATE machine SET `hideMachine` = 1 WHERE machineid = ?";
+    const q = "UPDATE machine SET `hideMachine` = 1 WHERE machineid = ?";
     db.query(q, values, (error, data) => {
       if (error) {
         callback(error, null);
@@ -48,21 +46,10 @@ class MapModel {
     });
   }
 
-  deleteNotification(noticeId, callback) {
-    const q = "DELETE FROM notification WHERE id = ?";
-    db.query(q, [noticeId], (error, data) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        callback(null, data);
-      }
-    });
-  }
-
-  updateNotification(values, noticeId, callback) {
+  updateDepartment(values, callback) {
     const q =
-      "UPDATE notification SET `notification` = ?, `notificationcol` = ?, `date` = ?, `desc` = ? WHERE id = ?";
-    db.query(q, [...values, noticeId], (error, data) => {
+      "UPDATE department SET `desc` = ?, `departmentname` = ? WHERE id = ?";
+    db.query(q, values, (error, data) => {
       if (error) {
         callback(error, null);
       } else {

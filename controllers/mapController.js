@@ -31,46 +31,38 @@ class MapController {
   removeDepartmentController(req, res) {
     const values = req.body.id;
 
-    this.mapModel.removeDepartmentModel(
-      values,
-      (error, data) => {
-        if (error) {
-          return res.json(error);
-        }
-        return res.json("Data Updated");
+    this.mapModel.removeDepartmentModel(values, (error, data) => {
+      if (error) {
+        return res.json(error);
       }
-    );
+      return res.json("Data Updated");
+    });
   }
 
   removeMachineController(req, res) {
     const values = req.body.id;
 
-    this.mapModel.removeMachineModel(
-      values,
-      (error, data) => {
-        if (error) {
-          return res.json(error);
-        }
-        return res.json("Data Updated");
+    this.mapModel.removeMachineModel(values, (error, data) => {
+      if (error) {
+        return res.json(error);
       }
-    );
+      return res.json("Data Updated");
+    });
   }
 
-  updateDepartment(req, res) {
-    const noticeId = req.params.id;
-    const { notification, value, date, desc } = req.body;
-    const values = [notification, value, date, desc];
+  updateDepartmentController(req, res) {
+    const { desc, name, selectedID } = req.body;
+    const values = [desc, name, selectedID];
+    console.log(desc)
+    console.log(name)
+    console.log(selectedID)
 
-    this.noticeBoardModel.updateNotification(
-      values,
-      noticeId,
-      (error, data) => {
-        if (error) {
-          return res.json(error);
-        }
-        return res.json("Data Updated");
+    this.mapModel.updateDepartment(values, (error, data) => {
+      if (error) {
+        return res.json(error);
       }
-    );
+      return res.json("Data Updated");
+    });
   }
 }
 

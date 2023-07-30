@@ -16,5 +16,9 @@ router.put("/", (req, res) => {
   issueController.closeIssueController(req, res);
 });
 
+router.put("/update", (req, res) => {
+  issueController.updateIssueController(req, res);
+});
+
 export default router;
 

@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import path from 'path';
+import db from "./config/database.js";
 import noticeBoardRoutes from "./routes/noticeRoute.js";
 import repairRoutes from "./routes/repairPartsRoute.js";
 import machineRoutes from "./routes/machineRoute.js";
@@ -30,6 +31,27 @@ app.use("/employees",employeeRoutes)
 app.use("/departments",departmentRoutes)
 app.use("/machines",machineRoutes)
 app.use("/positions",positionRoutes)
+
+app.post('/login', (req, res) => {
+  let  username = req.body.username;
+  let password = req.body.password;
+
+  const query = `SELECT * FROM user WHERE username = ? AND password = ?`;
+
+  db.query(query, [username, password], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred' });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+
+    // Login successful
+    return res.status(200).json({ message: 'Login successful' });
+  });
+});
 
 // Start the server on Port 8800
 app.listen(8800, () => {
