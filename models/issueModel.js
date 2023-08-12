@@ -51,7 +51,7 @@ class IssueModel {
   }
 
   updateIssueModel(values, callback) {
-    const q ="UPDATE issues SET des = ?, priority = ?, departmentID = ?, machineID = ?, status=1 WHERE issueID = ?";
+    const q ="UPDATE issues SET dDes = ?, priority = ?, departmentID = ?, machineID = ?, status=1 WHERE issueID = ?";
 
     db.query(q, values, (error, data) => {
       if (error) {

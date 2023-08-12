@@ -27,6 +27,20 @@ class EmployeeController {
       }
     );
   }
+
+  updateUsernamePassword(req,res){
+    const values = req.body;
+
+    this.employeeModel.updateUnamePassword(
+      values,
+      (error, data) => {
+        if (error) {
+          return res.json(error);
+        }
+        return res.json("Data Updated");
+      }
+    );
+  }
 }
 
 export default EmployeeController;

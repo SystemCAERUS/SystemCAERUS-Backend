@@ -56,7 +56,7 @@ router.post("/", upload.single("image"), (req, res) => {
 });
 
 //update machine details
-router.put("/", upload.single("image"), (req, res) => {
+router.put("/update", upload.single("image"), (req, res) => {
   const image = req.file.filename;
   const machineName = req.body.machinename;
   const departmentID = req.body.departmentid;
